@@ -3,23 +3,23 @@ ydlidar_ros2_driver_node:
     port: /dev/ttyUSB0
     frame_id: laser_frame
     ignore_array: ""
-    baudrate: 230400
-    lidar_type: 1
-    device_type: 0
+    baudrate: 230400        # G1/G2/R2/G4/... use 230400
+    lidar_type: 1            # TYPE_TRIANGLE (G2 is a triangulation lidar)
+    device_type: 0            # YDLIDAR_TYPE_SERIAL
     isSingleChannel: false
-    intensity: false
-    intensity_bit: 0
-    sample_rate: 9
+    intensity: true            # G2 supports intensity
+    intensity_bit: 8            # G2 intensity is 8-bit
+    sample_rate: 5            # G2/R2/X4 sample rate = 5K
     abnormal_check_count: 4
     fixed_resolution: true
-    reversion: false
-    inverted: false
+    reversion: true            # G1/G2/G2A/G2C/F4/F4PRO/R2 → true
+    inverted: true
     auto_reconnect: true
-    support_motor_dtr: false
+    support_motor_dtr: false      # G2 does not support DTR start/stop
     angle_max: 180.0
     angle_min: -180.0
-    range_max: 64.0
-    range_min: 0.01
-    frequency: 10.0
+    range_max: 16.0            # G2 max range per official dataset
+    range_min: 0.28            # G2 min range per official dataset
+    frequency: 10.0            # G2 supports 5–12 Hz, 10 Hz is typical default
     invalid_range_is_inf: false
     debug: false
